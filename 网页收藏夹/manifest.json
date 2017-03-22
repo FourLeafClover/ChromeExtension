@@ -1,0 +1,12 @@
+{
+    "name": "My Extension",
+    "version": "2",
+    "manifest_version": 2,
+    "description": "网站搜藏",
+    "browser_action": {
+        "default_title": "",
+        "default_icon": "ico.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": ["tabs"]
+}

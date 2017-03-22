@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="bootstrap.css">
+  <script type="text/javascript" src='jquery-1.12.1.min.js'></script>
+  <script src='bootstrap.js'></script>
+  <script src='angular.js'></script>
+  <script type="text/javascript" src='backend.js'></script>
+</head>
+<body ng-app='chromeWeb' ng-controller='myCtrl'>
+    <div class="alert alert-info margin-bottom-0">{{operatorMsg}}</div>
+    <div class='margin-top-5' ng-class='{"div-hide":isShowHome===false}'>
+    <div >
+          <button class="btn btn-success" ng-click='add()'>Add</button>
+          <button class="btn btn-success" ng-click='cllectCurrentPage()'>Collect Current Page</button>       
+    </div>
+        <div class='margin-top-5' ng-repeat = 'group in Data track by $index'>
+             <a href="#" class="list-group-item active" ng-click='showGroup(group)' >{{group.GroupName+"("+group.UrlList.length+")"}}</a>            
+             <div ng-class='{"div-hide":group.isShow===false}' class="list-group-item" ng-repeat='detail in group.UrlList track by $index'>
+              <button  class="btn btn-warning" ng-click='deleteUrl(detail)'>Remove</button>
+              <a href="{{detail.Url}}" target='_blank' ><span class='webfont'>{{detail.UrlName}}</span></a>      
+             </div>
+             <div ng-class='{"div-hide":group.isShow===true}'>...</div>
+        </div>
+    </div>
+    <div ng-class='{"div-hide":isShowHome}'>
+       <div class="dropdown">
+            <a href="#" class="dropdown-toggle active list-group-item" data-toggle="dropdown">
+                GroupName({{Data.length}})
+            </a>
+            <ul class="dropdown-menu">
+               <li ng-repeat="group in Data track by $index">
+                 <a href="#" ng-click='selectGroup(group)'>{{group.GroupName}}</a>
+               </li>
+            </ul>
+       </div>
+       <div>
+         <div class="input-group margin-top-5">
+           <span class="input-group-addon green">Group Name:</span>
+           <input type="text" ng-model='urlModel.GroupName' class="form-control">  
+           <span class="input-group-addon red">*</span>           
+         </div>
+          <div class="input-group margin-top-5">
+           <span class="input-group-addon green">Url:</span>
+           <input type="text" ng-model='urlModel.Url' class="form-control">   
+           <span class="input-group-addon red">*</span>           
+         </div>
+         <div class="input-group margin-top-5">
+           <span class="input-group-addon green">Url Name:</span>
+           <input type="text" ng-model='urlModel.UrlName' class="form-control">  
+           <span class="input-group-addon red">*</span>            
+         </div>
+         <!--<div class="input-group margin-top-5">
+           <span class="input-group-addon green">Url Description:</span>
+           <input type="text" ng-model='urlModel.UrlDesc' class="form-control">   
+         </div> -->
+         <div class='margin-top-5'>
+           <button class="btn btn-success" ng-click='save()'>Save</button>
+           <button class="btn btn-warning" ng-click='clear()'>Clear</button>
+           <button class="btn btn-info" ng-click='exit()'>Exit</button>     
+         </div> 
+       </div>
+    </div>
+</body>
+<style type="text/css">
+     body {
+       width:400px;
+       height:500px;
+     }
+
+     .webfont{
+        font-size: 13px !important;
+        margin-left: 10px;
+     }
+
+     .green{
+        background-color: green !important;
+        color: white;
+     }
+
+     .red{
+       background-color: white !important;
+        color: red;
+     }
+
+     .margin-bottom-0{
+         margin-bottom: 0px !important;
+     }
+
+     .margin-top-5{
+        margin-top: 5px;
+     }
+
+     .div-hide{
+        display: none;
+     }
+
+</style>
+</html>
