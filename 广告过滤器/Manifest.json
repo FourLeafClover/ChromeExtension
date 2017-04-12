@@ -4,7 +4,8 @@
     "manifest_version": 2,
     "author": "Frank Zhang",
     "browser_action": {
-        "default_popup": "background.html"
+        "default_popup": "background.html",
+        "default_icon": "ico.png"
     },
     "permissions": [
         "tabs", "http://*/*", "https://*/*"
